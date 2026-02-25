@@ -1,65 +1,115 @@
-import Image from "next/image";
+"use client"
+
+import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ProductCard from './components/ProductCard';
+import { products, productsByCategory } from './data/products';
+
+// Definindo um tipo para as categorias
+type Category = 'todos' | 'citricos' | 'mentol' | 'mistos';
 
 export default function Home() {
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [activeCategory, setActiveCategory] = useState<Category>('todos');
+
+  useEffect(() => {
+    // Listener para filtrar produtos quando clicar nas categorias
+    const handleFilter = (event: any) => {
+      const category = event.detail.category as Category;
+      setActiveCategory(category);
+      
+      if (category === 'todos') {
+        setFilteredProducts(products);
+      } else {
+        setFilteredProducts(productsByCategory[category] || []);
+      }
+    };
+
+    window.addEventListener('filterProducts', handleFilter);
+    
+    return () => {
+      window.removeEventListener('filterProducts', handleFilter);
+    };
+  }, []);
+
+  // Título dinâmico baseado na categoria
+  const getTitle = () => {
+    switch(activeCategory) {
+      case 'citricos':
+        return 'Pods Cítricos 🍋';
+      case 'mentol':
+        return 'Pods Mentolados ❄️';
+      case 'mistos':
+        return 'Pods Mistos 🔄';
+      default:
+        return 'Nosso Catálogo';
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <Header />
+      
+      <main className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <section className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+            Os Melhores <span className="text-green-600">Pods</span> do Mercado
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Encontre a melhor experiência vaping com nossa seleção de pods de alta qualidade
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </section>
+
+        {/* Products Grid */}
+        <section id="products" className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+            {getTitle()}
+          </h2>
+          
+          {/* Indicador de categoria ativa (opcional) */}
+          {activeCategory !== 'todos' && (
+            <div className="text-center mb-4">
+              <button
+                onClick={() => {
+                  setActiveCategory('todos');
+                  setFilteredProducts(products);
+                }}
+                className="text-pink-600 hover:text-pink-700 text-sm"
+              >
+                ← Ver todos os produtos
+              </button>
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          {/* Mensagem se não houver produtos */}
+          {filteredProducts.length === 0 && (
+            <p className="text-center text-gray-500 py-12">
+              Nenhum produto encontrado nesta categoria.
+            </p>
+          )}
+        </section>
+
+        <section id="about" className="bg-black rounded-lg shadow-lg p-8 mb-12">
+          <h2 className="text-3xl font-bold text-pink-600 mb-4 text-center">
+            Sobre Nós
+          </h2>
+          <p className="text-gray-100 text-center max-w-3xl mx-auto">
+            Somos especialistas em pods e acessórios para vaping. Trabalhamos apenas com 
+            produtos originais e de alta qualidade, garantindo a melhor experiência para 
+            nossos clientes. Entrega rápida e segura para todo Brasil.
+          </p>
+        </section>
       </main>
-    </div>
+
+      <Footer />
+    </>
   );
 }
