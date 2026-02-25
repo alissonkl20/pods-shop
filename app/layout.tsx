@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { CarrinhoProvider } from './components/CarrinhoContext'
 import CarrinhoDrawer from './components/CarrinhoDrawer'
+import { PropsWithChildren } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,7 +11,7 @@ export const metadata = {
   description: 'Encontre os melhores pods e acessórios com entrega rápida',
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
