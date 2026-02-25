@@ -104,7 +104,7 @@ export default function Home() {
           <p className="text-gray-100 text-center max-w-3xl mx-auto">
             Somos especialistas em pods e acessórios para vaping. Trabalhamos apenas com 
             produtos originais e de alta qualidade, garantindo a melhor experiência para 
-            nossos clientes. Entrega rápida e segura para todo Brasil.
+            nossos clientes.
           </p>
         </section>
       </main>

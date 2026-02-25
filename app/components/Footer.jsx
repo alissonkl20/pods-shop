@@ -4,7 +4,9 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">Pods Shop</h3>
+            <h3 className="text-lg font-semibold mb-4">
+               <span className="text-pink-600">NV</span> Pods
+               </h3>
             <p className="text-gray-400">
               Os melhores pods e acessórios para sua experiência vaping.
             </p>
@@ -25,7 +27,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-100">
               <li>📱 Instagram: NVSHOP</li>
               <li>📧 Email: contato@podsshop.com</li>
-              <li>📍 São Paulo - SP</li>
+              <li>📍 Jaraguá do Sul</li>
             </ul>
           </div>
         </div>
