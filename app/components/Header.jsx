@@ -7,11 +7,14 @@ import {
   Snowflake, 
   Blend, 
   List,
-  ChevronDown
+  ChevronDown,
+  ShoppingBag
 } from 'lucide-react';
+import { useCarrinho } from './CarrinhoContext';
 
 export default function Header() {
   const [showCategories, setShowCategories] = useState(false);
+  const { totalItens, setMostrarCarrinho } = useCarrinho();
 
   const categories = [
     { id: 'citricos', name: 'Cítricos', icon: Citrus },
@@ -38,7 +41,7 @@ export default function Header() {
     <header className="bg-gradient-to-r from-black via-gray-900 to-black shadow-lg sticky top-0 z-50 border-b border-pink-600/20">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          {/* Logo com design moderno */}
+          {/* Logo */}
           <div className="flex items-center space-x-1 group">
             <div className="relative">
               <span className="text-3xl font-black bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent">
@@ -52,7 +55,7 @@ export default function Header() {
             </span>
           </div>
           
-          {/* Navegação Desktop com efeitos */}
+          {/* Navegação Desktop */}
           <nav className="hidden md:flex space-x-8">
             {['Início', 'Produtos', 'Sobre', 'Contato'].map((item) => (
               <a
@@ -67,6 +70,20 @@ export default function Header() {
           </nav>
           
           <div className="flex items-center space-x-4 relative">
+            {/* Carrinho */}
+            <button
+              onClick={() => setMostrarCarrinho(true)}
+              className="relative p-2 text-gray-300 hover:text-pink-400 transition-colors"
+            >
+              <ShoppingBag className="w-6 h-6" />
+              {totalItens > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                  {totalItens}
+                </span>
+              )}
+            </button>
+
+            {/* Botão Catálogo */}
             <div className="relative">
               <button 
                 className="bg-gradient-to-r from-pink-600 to-pink-500 text-white px-5 py-2.5 rounded-xl hover:from-pink-700 hover:to-pink-600 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-pink-600/25 hover:shadow-pink-600/40"
@@ -77,6 +94,7 @@ export default function Header() {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showCategories ? 'rotate-180' : ''}`} />
               </button>
 
+              {/* Menu Categorias */}
               {showCategories && (
                 <>
                   <div 
@@ -84,7 +102,6 @@ export default function Header() {
                     onClick={() => setShowCategories(false)}
                   />
                   
-                  {/* Menu dropdown moderno */}
                   <div className="absolute right-0 mt-3 w-64 bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl shadow-2xl z-50 overflow-hidden backdrop-blur-lg backdrop-filter">
                     <div className="py-2">
                       <div className="px-5 py-3 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-800/50">

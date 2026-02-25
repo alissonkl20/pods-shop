@@ -1,20 +1,23 @@
 'use client'
 import { useState } from 'react'
-import WhatsAppButton from './WhatsAppButton'
+import { useCarrinho } from './CarrinhoContext'
+import { ShoppingCart } from 'lucide-react'
 
 export default function ProductCard({ product }) {
   const [selectedFlavor, setSelectedFlavor] = useState(product.flavors[0])
   const [selectedNicotine, setSelectedNicotine] = useState(product.nicotine[0])
   const [quantity, setQuantity] = useState(1)
+  
+  const { adicionarAoCarrinho } = useCarrinho()
 
-  const whatsappMessage = `Olá! Gostaria de comprar:
-*Produto:* ${product.name}
-*Marca:* ${product.brand}
-*Sabor:* ${selectedFlavor}
-*Nicotina:* ${selectedNicotine}
-*Quantidade:* ${quantity}
-*Preço unitário:* R$ ${product.price.toFixed(2)}
-*Total:* R$ ${(product.price * quantity).toFixed(2)}`
+  const handleAddToCart = () => {
+    adicionarAoCarrinho(
+      product,
+      selectedFlavor,
+      selectedNicotine,
+      quantity
+    )
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -82,8 +85,15 @@ export default function ProductCard({ product }) {
               className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>
-          
-          <WhatsAppButton message={whatsappMessage} />
+
+          {/* Botão Adicionar ao Carrinho */}
+          <button
+            onClick={handleAddToCart}
+            className="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+          >
+            <ShoppingCart className="w-5 h-5" />
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     </div>
