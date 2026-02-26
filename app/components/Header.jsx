@@ -50,9 +50,6 @@ export default function Header() {
               <span className="absolute -top-1 -right-2 w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
             </div>
             <span className="text-2xl font-light text-gray-200">Pods</span>
-            <span className="text-2xl font-black bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
-              Shop
-            </span>
           </div>
           
           {/* Navegação Desktop */}

@@ -43,50 +43,6 @@ export default function ProductCard({ product }) {
         <p className="text-sm text-gray-600 mb-3">{product.description}</p>
         
         <div className="space-y-3">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Sabor:
-            </label>
-            <select 
-              value={selectedFlavor}
-              onChange={(e) => setSelectedFlavor(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            >
-              {product.flavors.map(flavor => (
-                <option key={flavor} value={flavor}>{flavor}</option>
-              ))}
-            </select>
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Nicotina:
-            </label>
-            <select 
-              value={selectedNicotine}
-              onChange={(e) => setSelectedNicotine(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            >
-              {product.nicotine.map(nic => (
-                <option key={nic} value={nic}>{nic}</option>
-              ))}
-            </select>
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Quantidade:
-            </label>
-            <input
-              type="number"
-              min="1"
-              value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            />
-          </div>
-
-          {/* Botão Adicionar ao Carrinho */}
           <button
             onClick={handleAddToCart}
             className="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
