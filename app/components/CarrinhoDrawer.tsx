@@ -1,3 +1,4 @@
+// app/components/CarrinhoDrawer.tsx
 'use client'
 
 import { useCarrinho } from './CarrinhoContext';
@@ -84,7 +85,7 @@ export default function CarrinhoDrawer() {
             </div>
           ) : (
             <>
-              {itens.map((item, index) => (
+              {itens.map((item) => (
                 <div key={`${item.id}-${item.sabor}-${item.nicotina}`} 
                      className="bg-gray-800/50 rounded-lg p-3 border border-gray-700/50">
                   <div className="flex gap-3">

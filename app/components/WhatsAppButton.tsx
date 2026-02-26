@@ -1,6 +1,9 @@
+// app/components/WhatsAppButton.tsx
 'use client'
 
-export default function WhatsAppButton({ message, children }) {
+import { WhatsAppButtonProps } from '../types/index'
+
+export default function WhatsAppButton({ message, children }: WhatsAppButtonProps) {
   const handleClick = () => {
     const phoneNumber = '554699420574'
     const encodedMessage = encodeURIComponent(message)

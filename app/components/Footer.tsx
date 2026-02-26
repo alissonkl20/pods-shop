@@ -1,3 +1,4 @@
+// app/components/Footer.tsx
 'use client'
 
 import Link from 'next/link'
@@ -6,15 +7,12 @@ import { useRouter } from 'next/navigation'
 export default function Footer() {
   const router = useRouter()
 
-  const handleScroll = (e, sectionId) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
     
-    // Verifica se está na página inicial
     if (window.location.pathname !== '/') {
-      // Se não estiver na home, redireciona para home com a seção
       router.push(`/#${sectionId}`)
     } else {
-      // Se estiver na home, faz scroll suave
       const element = document.getElementById(sectionId)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
@@ -27,7 +25,7 @@ export default function Footer() {
   }
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:contato@podsshop.com?subject=Contato%20via%20Site'
+    window.location.href = 'mailto:contato@nvpods.com?subject=Contato%20via%20Site'
   }
 
   const handleAddressClick = () => {
@@ -94,7 +92,7 @@ export default function Footer() {
                   className="hover:text-pink-400 transition flex items-center gap-2"
                 >
                   <span>📱</span>
-                  <span className="hover:underline">Instagram: @nvshop</span>
+                  <span className="hover:underline">Instagram: @nvpods</span>
                 </button>
               </li>
               <li>
@@ -103,7 +101,7 @@ export default function Footer() {
                   className="hover:text-pink-400 transition flex items-center gap-2"
                 >
                   <span>📧</span>
-                  <span className="hover:underline">contato@podsshop.com</span>
+                  <span className="hover:underline">contato@nvpods.com</span>
                 </button>
               </li>
               <li>
