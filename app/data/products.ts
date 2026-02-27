@@ -6,7 +6,7 @@ export const productsByCategory = {
       brand: "Ignite",
       price: 110.00,
       description: "Bateria de 800mAh, pods reutilizáveis, carregamento USB-C",
-         image: "/images/1.jpg",
+         image: "/images/1.webp",
       flavors: ["Mentol", "Frutas Vermelhas", "Melancia", "Uva"],
       nicotine: ["0mg", "20mg", "50mg"]
     },
@@ -16,7 +16,7 @@ export const productsByCategory = {
       brand: "Ignite",
       price: 130.00,
       description: "1200mAh, tela digital, controle de voltagem",
-          image: "/images/2.jpg",
+          image: "/images/v155.jpeg",
       flavors: ["Mentol", "Red Fruit", "Kiwi", "Abacaxi"],
       nicotine: ["0mg", "20mg", "50mg"]
     },
