@@ -74,7 +74,7 @@ export default function Header() {
           <div className="flex items-center space-x-1 group cursor-pointer">
             <div className="relative">
               <span className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-pink-500 to-pink-400 bg-clip-text text-transparent">
-                NV
+                VN
               </span>
               <span className="absolute -top-1 -right-2 w-2 h-2 bg-pink-500 rounded-full animate-pulse" />
             </div>

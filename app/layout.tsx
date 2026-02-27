@@ -8,7 +8,7 @@ import { PropsWithChildren } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'NV Pods - Os melhores pods do mercado',
+  title: 'VN Pods - Os melhores pods do mercado',
   description: 'Encontre os melhores pods e acessórios com entrega rápida',
 }
 

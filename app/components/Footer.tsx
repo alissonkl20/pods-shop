@@ -40,7 +40,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block">
               <h3 className="text-lg font-semibold mb-4 hover:text-pink-500 transition-colors">
-                <span className="text-pink-600">NV</span> Pods
+                <span className="text-pink-600">VN</span> Pods
               </h3>
             </Link>
             <p className="text-gray-100">

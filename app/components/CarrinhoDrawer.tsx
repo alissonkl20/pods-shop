@@ -20,7 +20,7 @@ export default function CarrinhoDrawer() {
   if (!mostrarCarrinho) return null;
 
   const gerarMensagemWhatsApp = () => {
-    let mensagem = "🛍️ *Pedido via Carrinho NV Pods*\n\n";
+    let mensagem = "🛍️ *Pedido via Carrinho VN Pods*\n\n";
     
     itens.forEach(item => {
       mensagem += `📦 *${item.nome}*\n`;
